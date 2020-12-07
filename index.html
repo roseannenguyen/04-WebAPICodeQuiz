@@ -18,34 +18,44 @@
                 <div id="scores" class="col-md-4"></div>
         </div>
         <div class="col-md-2 col-sm-6">
-            <h5 id="time">Timer:</h5>
+            <h5 id="timer" >Timer: 60 Seconds </h5>
         </div>
     </div>
-
-        <div class="row body justify-content-md-center">
-            <div class="col-md-auto", id ="welcomeText">
-                <h1>Basics to Coding Quiz!</h1>
+    <div class="row body justify-content-md-center hide" id="article"> 
+        <div class="col-md-auto", id ="welcomeText">
+            <h1>Basics to Coding Quiz!</h1>
                 <p class="text">
                     Do you know the basics of coding? Answer 5 simple multiple-choice questions to put your knowledge to the test!
                     <br>
                     This quiz will be timed! Each time you answer a quiz incorrectly, you will lose seconds off the timer.
                 </p>
-            </div>
-            <button class="btn btn-primary btn-block" type="submit" id="startQuiz"> Start Quiz</button>
         </div>
-
-<!-- question -->
-<div class="card", id="question"> 
-
+    </div>
 </div>
 
-<div class="card", id="choices"> </div>
+<div class="justify-content-md-center hide" id="question-container"> 
+    <div class="card", id="question"> </div>
+        <div class="btn-grid", id="options"> </div>
+        <div class="btn-grid", id="options"> </div>
+        <div class="btn-grid", id="options"> </div>
+        <div class="btn-grid", id="options"> </div>
+        
+    <div class="controls">
+        <button class="start-btn btn-primary btn-block" id="startButton"> Start Quiz</button>
+        <button class="next-btn " id="nextButton"> test</button>
+    </div>
+    <div id="results"></div>
+</div>
+
+
+<!-- question -->
+
 
 <!-- 4 options -->
 
 
 
-</div>
+
         <script src="./script.js"> </script>   
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
