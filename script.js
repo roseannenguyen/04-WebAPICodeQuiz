@@ -1,16 +1,8 @@
 
-
-
-var userChoice = "";
-var user = [];
-var saveUserscore = [];
-
 // click start button. Need to set timer 
 // then timer starts and questions is presented
 // need 4 options and ul/li
 // start with an array for questions
-
-var score = 0;
 
 var quizQuestions = [{ 
     question: "What is javascript?",
@@ -35,11 +27,23 @@ var quizQuestions = [{
     ],
 }];
 
+var userChoice = "";
+var user = [];
+var saveUserscore = [];
+var score = 0;
+
 function displayQuestion(question) {
-    document.getElementById("question").textContent = question.question; 
+    document.getElementById("#question").innerHTML = ""; 
+    document.getElementById("#choices").innerHTML = ""; 
+
+    var choices =questions[currentIndex].choices;
+
     for (var i =0; i < question.choices.length; i++) {
-    var choice = document.createElement("div");
-    choice.textContent = question.choices[i];   
+    var correctChoice = document.getElementById("#button");
+    var choiceBody = document.createElement("div")
+
+    choice.textContent = question.choices[i];
+
     choice.addEventListener("click", function(){
     checkAnswer(question, function (event) {
     event.preventDefault();
@@ -60,8 +64,6 @@ function checkAnswer(question, userChoice) {
     }
 }
 
-displayQuestion(quizQuestions[0]) 
-
 
 // when question answer, then presented with another question
 
@@ -78,17 +80,6 @@ displayQuestion(quizQuestions[0])
 
 
 
-// var userInfo {
-//     initials: initials.value.trim(),
-//     score: score,
-// }
-// saveUserscore.push(userInfo);
-// usethis();
-// }
-
-// function saveUserscore() {
-//     localStorage.setItem("saveUserscore", JSON.stringify(usethis));
-// }
 
 
 // then game over
