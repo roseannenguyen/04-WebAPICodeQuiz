@@ -13,12 +13,14 @@
 <div class="container-fluid">
     <div class="row header">
         <div class="col-md-10 col-sm-6">
+
             <h5 id="viewHighscore">View High Score</h5>
                 <div id="names" class="col-md-4"></div>
                 <div id="scores" class="col-md-4"></div>
         </div>
+
         <div class="col-md-2 col-sm-6">
-            <h5 id="timer" >Timer: 60 Seconds </h5>
+            <h5 id="beginTimer" > Timer </h5>
         </div>
     </div>
     <div class="row body justify-content-md-center hide" id="article"> 
@@ -30,19 +32,18 @@
                     This quiz will be timed! Each time you answer a quiz incorrectly, you will lose seconds off the timer.
                 </p>
         </div>
-    </div>
+    </div> 
 </div>
 
 <div class="justify-content-md-center hide" id="question-container"> 
-    <div class="card", id="question"> </div>
-        <div class="btn-grid", id="options"> </div>
-        <div class="btn-grid", id="options"> </div>
-        <div class="btn-grid", id="options"> </div>
-        <div class="btn-grid", id="options"> </div>
+    <div class="card" id="question"> </div>
+        
+    <div class="btn-grid" id="options"> </div>
+      
         
     <div class="controls">
-        <button class="start-btn btn-primary btn-block" id="startButton"> Start Quiz</button>
-        <button class="next-btn " id="nextButton"> test</button>
+        <button class="btn btn-primary" id="start-btn"> Start Quiz</button>
+        <button class="btn" id="next-btn"> test</button>
     </div>
     <div id="results"></div>
 </div>

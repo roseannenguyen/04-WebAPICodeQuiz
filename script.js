@@ -1,52 +1,19 @@
+var mainDisplay = document.getElementById("article");
 
-
-var questionElement = document.getElementById("question");
+var questionContainer = document.getElementById("question-container");
+var currentQuestion = document.getElementById("question");
 var choiceElement = document.getElementById("options");
 var resultsFinal = document.getElementById("results");
-// storage
-var storedScores = JSON.parse(localStorage.getItem("userData"))
-var allScores = [];
 
-// timer
-var timer = 60;
-        
-function setTimer() {  var interval = setInterval(function(){
-document.getElementById("timer").innerHTML=timer;
-timer--;
+var startQuiz = document.getElementById("start-btn");
+var nextButton =document.getElementById("next-btn");
 
-if (timer === 0){
-    clearInterval(interval);
-    document.getElementById("timer").innerHTML='Done';
-    alert("You're out of time!");
-    return;
-}
-}, 1000);
-}
+var currentQuestionIndex = 0;
 
-var currentQuestion = 0;
-var mainDisplay = document.getElementById("article");
-var startQuiz = document.getElementById("startButton");
-var nextQuestion =document.getElementById("nextButton");
-var questionContainer = document.getElementById("question-container");
-
-startQuiz.addEventListener("click", beginQuiz);
-
-function beginQuiz() {
-    console.log("Started");
-    setTimer();
-    firstQuestion();
-    questionElement.setAttribute("style", "display: block");
-    mainDisplay.setAttribute("style", "display: none");   
-}
-
-
-var score = 0;
-var totalTimer = 60;
-var pentalty = 10;
 var userChoice = "";
 var saveUserscore = [];
 
-  var quizQuestions = [{ 
+var quizQuestion = [{ 
     question: "What is javascript?",
     answer: "A programming language",
     choices: [
@@ -70,55 +37,74 @@ var saveUserscore = [];
 }];
 
 
-function getQuestion(question) {
+startQuiz.setAttribute("class", "btn btn-primary")
+startQuiz.addEventListener("click", beginQuiz);
 
-    for (var i =0; i < question.choices.length; i++) {
-    var options = document.getElementById("#button");
-    // var choice = document.createElement("div")
 
-    answerElement.textContent = question.choices[i];
-
-    options.addEventListener("click", function(){
-    checkAnswer(question, function (event) {
-    event.preventDefault();
-    });
-    // when click, pass text through there. Look at the event objects for clicks (activities 12); look through the console
-    });
-
-    document.getElementById("option").appendChild(choice); 
-    }   
-
+function beginQuiz() {
+    article.style.display = "none";
+    startQuiz.style.display = "none";
+    questionContainer.style.display = "block";
+    console.log("next");
+    showQuestion();
 }
 
-function nextQuestion () {
-    showQuestion(currentQuestion)
-}
+    function showQuestion() {
+    var currentOption = quizQuestion[currentQuestionIndex]
+    console.log(currentOption);
+    currentQuestion.textContent = currentOption.question
+    choiceElement.textContent = currentOption.choices
 
-function checkAnswer(question, userChoice) {
-    if (userChoice === question.answer) {
-        score++;
-            alert("That's correct!");
+    
+    // next button add one to current question index and same showquestion increment 
     }
-    else if (userchoice !== answer) {
-        removeTime(timer);
-    }
-}
-function showQuestion(question) {
-    questionElement.innerHTML = question.question;
 
-}
+ 
 
 
+// function firstQuestion(question) {
 
-// Storage
-function highscorePage(a, b) {
+//     for (var i =0; i < question.choices.length; i++) {
+//     var options = document.createElement("div")
 
-    var userData = {
-        name: a,
-        userScore: b
-    };
-    allScores.push(userData);
+//     answerElement.textContent = question.choices[i];
 
-    localStorage.setItem("userData", JSON.stringify(allScores));
+//     options.addEventListener("click", function(){
+//     checkAnswer(question, function (event) {
+//     event.preventDefault();
+//     });
+//     // when click, pass text through there. Look at the event objects for clicks (activities 12); look through the console
+//     });
 
-}
+//     document.getElementById("options").appendChild(options); 
+//     }   
+// }
+
+// function checkAnswer(question, userChoice) {
+//     if (userChoice === question.answer) {
+//         score++;
+//             alert("That's correct!");
+//     }
+//     else if (userchoice !== answer) {
+//         removeTime(timer);
+//     }
+// }
+
+
+
+
+
+// storage
+// var storedScores = JSON.parse(localStorage.getItem("userData"))
+
+// function highscorePage(a, b) {
+
+//     var userData = {
+//         name: a,
+//         userScore: b
+//     };
+//     allScores.push(userData);
+
+//     localStorage.setItem("userData", JSON.stringify(allScores));
+
+// }
