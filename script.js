@@ -6,14 +6,15 @@ var choiceElement = document.getElementById("options");
 var resultsFinal = document.getElementById("results");
 
 var startQuiz = document.getElementById("start-btn");
-var nextButton =document.getElementById("next-btn");
+var nextButton = document.getElementById("next-btn");
 
 var currentQuestionIndex = 0;
 
 var userChoice = "";
+var userName;
 var saveUserscore = [];
 
-var quizQuestion = [{ 
+var quizQuestion = [{
     question: "What is javascript?",
     answer: "A programming language",
     choices: [
@@ -49,17 +50,20 @@ function beginQuiz() {
     showQuestion();
 }
 
-    function showQuestion() {
+function showQuestion() {
     var currentOption = quizQuestion[currentQuestionIndex]
     console.log(currentOption);
-    currentQuestion.textContent = currentOption.question
-    choiceElement.textContent = currentOption.choices
-
+        currentQuestion.textContent = currentOption.question
+            choiceElement.textContent = currentOption.choices
+                 document.getElementById("options").appendChild(options) = "<button>" + quizQuestion.choices[i] + "</button>";
+     currentQuestionIndex++;
     
-    // next button add one to current question index and same showquestion increment 
-    }
 
- 
+    // next button add one to current question index and same showquestion increment 
+}
+
+
+
 
 
 // function firstQuestion(question) {
@@ -102,9 +106,9 @@ function beginQuiz() {
 //     var userData = {
 //         name: a,
 //         userScore: b
-//     };
+//     }; 
 //     allScores.push(userData);
 
 //     localStorage.setItem("userData", JSON.stringify(allScores));
 
-// }
+// 
