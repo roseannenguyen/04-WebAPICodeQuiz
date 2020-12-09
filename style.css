@@ -22,3 +22,18 @@
 h1 {
     padding: 20px;  
 }
+
+#question-container {
+    padding: 50px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.next {
+    
+        background-color: black;
+        color: white;
+      
+}
+
