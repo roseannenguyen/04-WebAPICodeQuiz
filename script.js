@@ -1,56 +1,55 @@
-var startButton = document.getElementById("start-btn")
 var mainText = document.getElementById("article");
+
+var startButton = document.getElementById("start-btn")
+var nextButton = document.getElementById("next-btn")
+
 var questionContainer = document.getElementById("question-container")
 var questionElement = document.getElementById("question")
 var answerButtons = document.getElementById("answer-buttons")
 
-var answerBtn = document.querySelectorAll("button.ansBtn")
-var answer1Btn = document.querySelector("#answer1");
-var answer2Btn = document.querySelector("#answer2");
-var answer3Btn = document.querySelector("#answer3");
-var answer4Btn = document.querySelector("#answer4");
 
-var nextButton = document.getElementById("next-btn")
+var viewHighscores = document.getElementById ("highscores")
 
-let shuffledQuestions
-var currentQuestionIndex = 0;
+var shuffledQuestions;
+var currentQuestionIndex;
 
-var questions = [ // array of objects
+var questions = [ 
     {
         question: "Coding is not stressful",
-        answers: ["1. Yes", "2. No", "3. Wrong Asnwer", "4. Try Again"],
-        correctAnswer: "1"
+        answers: [
+            
+            {text: "1. Yes", correct: true},
+            {text: "2. No", correct: false},
+
+            ]
+        
     },
     {
-        question: "What are the main components of the web?",
-        answers: ["1. Javascript", "2. CSS", "3. HTML", "4. All of the above"],
-        correctAnswer: "4"
+        question: "What are the all main components of the web?",
+        answers: [
+           {text: "1. Javascript",correct: false },
+        {text: "2. CSS", correct: false},
+        {text: "3. HTML", correct: false},
+        {text: "4. All of the above",correct: true},
+    ],
+       
     },
     {
         question: "What is the name of the coding program we use?",
-        answers: ["1. Victoria Secret Code", "2. Valentino Sauce Code", "3. Visual Studio Code", "4. Notepad"],
-        correctAnswer: "3"
+        answers: [
+            {text:"1. Victoria Secret Code",correct: false},
+             {text:"2. Valentino Sauce Code",correct: false},
+             {text:"3. Visual Studio Code", correct: true},
+             {text:"4. Notepad",correct: false}
+            ],
+        
     },
-    {
-        question: "Where do we upload our code to?",
-        answers: ["1. Git Home", "2. Git", "3. quotes", "4. parentheses"],
-        correctAnswer: "2"
-    },
-    {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers: ["1. Javascript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        correctAnswer: "3"
-    }
+
 ];
 
 
 // start quiz is button clicked
 startButton.addEventListener("click", startGame)
-
-
-answerBtn.forEach(item => {
-    item.addEventListener('click', selectAnswer);
-});
 
 function startGame() {
     startButton.style.display = "none"
@@ -61,45 +60,32 @@ function startGame() {
     setQuestion();
 }
 
-function setQuestion(id) {
-    if (id < questions.length) {
-        questionElement.innerText = question.question;
-        answerBtn.textContent = questions[id].answers[0];
-        answer2Btn.textContent = questions[id].answers[1];
-        answer3Btn.textContent = questions[id].answers[2];
-        answer4Btn.textContent = questions[id].answers[3];
-    }
-    setNextQuestion();
-}
+function setQuestion() {
+    questionElement.innerText = question.question
+  question.answers.forEach(answer => {
+    var button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    if (answer.correct) {
+      button.dataset.correct = answer.correct
+    };
+    button.addEventListener('click', selectAnswer)
+    answerButtons.appendChild(button)
+  })
+};
 
 function setNextQuestion() {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    resetState();
+    setQuestion(shuffledQuestions[currentQuestionIndex]);
 
 }
 
 
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answers => {
-        var button = document.createElement("button")
-        button.innerText = answers.text
-        button.classList.add("answerBtn")
-        if (answers.correct) {
-            button.dataset.correct = answers.correct
-        }
-        button.addEventListener("click", selectAnswer)
-        showQuestion.append(button)
-    })
-
-
-
-}
 
 function resetState() {
     nextButton.classList.add("hide")
-    while (answerBtn.firstChild) {
-        answerButtons.removeChild(answerBtn.firstChild)
+    while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild)
     }
 }
 
@@ -115,6 +101,47 @@ function selectAnswer(event) {
     if (currentQuestionIndex < questions.length) {
         currentQuestionIndex++;
     }
-    // call setQuestion to bring in next question when any ansBtn is clicked
     setQuestion(currentQuestionIndex);
-}
+};
+
+
+
+// storage script, but did not get to 
+// var storedScores = JSON.parse(localStorage.getItem("userData"))
+// var highscores = [
+//     { initials: "AAA", score: 10},
+//     { initials: "AAA", score: 10},
+//     { initials: "AAA", score: 10},
+//     { initials: "AAA", score: 10},
+// ]
+
+// localStorage.setItem("highscores", JSON.stringify(highscores));
+
+// var localHighScores = JSON.parse(localStorage.getItem("highscores"));
+
+// localHighScores.sort(function(a,b) {
+//     return b.score - a.score;
+// })
+
+// for (let i = 0; i < localHighScores.length; i++) {
+//     const highscore = localHighScores[i];
+
+//     var li = document.createElement("li");
+//     var ul =document.createElement("ul");
+//     li.textContent = highscores.initials + "" + highscores.score;
+//     ul.append(li);
+
+//     document.body.append(ul)
+// }
+
+// function highscorePage(a, b) {
+
+//     var userData = {
+//         name: a,
+//         userScore: b
+//     }; 
+//     allScores.push(userData);
+
+//     localStorage.setItem("userData", JSON.stringify(allScores));
+
+// }

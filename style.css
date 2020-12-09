@@ -1,4 +1,7 @@
-
+main {
+    flex: 1 0 auto;
+ 
+}
 .header {
     padding: 50px;
     background-color: lightblue;
@@ -41,6 +44,10 @@
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
 }
 
 
@@ -53,11 +60,7 @@ ul.nobullets {
     align-items: center;
     }
 
-#questions,
-#final,
-#highscores {
-     display: none;  
-      } 
+
 
      .center-block {
         margin-left:auto;

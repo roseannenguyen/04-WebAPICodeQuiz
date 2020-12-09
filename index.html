@@ -13,55 +13,51 @@
 </head>
 
 <body>
+    <main>
+        <div class="container-fluid">
+            <div class="row header">
+                <div class="col-md-10 col-sm-6">
 
-    <div class="container-fluid">
-        <div class="row header">
-            <div class="col-md-10 col-sm-6">
+                    <h5 id="highscores">View High Score</h5>
+                    <div id="names" class="col-md-4"></div>
+                    <div id="scores" class="col-md-4"></div>
+                </div>
 
-                <h5 id="viewHighscore">View High Score</h5>
-                <div id="names" class="col-md-4"></div>
-                <div id="scores" class="col-md-4"></div>
+                <div class="col-md-2 col-sm-6">
+                    <h5 id="timer"> Timer </h5>
+                </div>
             </div>
-
-            <div class="col-md-2 col-sm-6">
-                <h5 id="startTimer"> Timer </h5>
+            <div class="row body justify-content-md-center " id="article">
+                <div class="col-md-auto" , id="welcomeText">
+                    <h1>Basics to Coding Quiz!</h1>
+                    <p class="text">
+                        Do you know the basics of coding? Answer 5 simple multiple-choice questions to put your
+                        knowledge to
+                        the test!
+                        <br>
+                        This quiz will be timed! Each time you answer a quiz incorrectly, you will lose seconds off the
+                        timer.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="row body justify-content-md-center " id="article">
-            <div class="col-md-auto" , id="welcomeText">
-                <h1>Basics to Coding Quiz!</h1>
-                <p class="text">
-                    Do you know the basics of coding? Answer 5 simple multiple-choice questions to put your knowledge to
-                    the test!
-                    <br>
-                    This quiz will be timed! Each time you answer a quiz incorrectly, you will lose seconds off the
-                    timer.
-                </p>
-            </div>
-        </div>
-        <div id="question-container" class="justify-content-md-center hide">
-            <div id="question">Questions</div>
-            <div class="col-3"></div>
+            <div id="question-container" class="justify-content-md-center hide">
+                <div id="question">Questions</div>
+                <div class="col-3"></div>
                 <div class="col-6">
-            <ul class="px-0 py-0 nobullets">
-                            <li class="mb-3"><button id="answer1" value="0" type="button"
-                                    class="btn btn-success ansBtn">Answer1</button></li>
-                            <li class="mb-3"><button id="answer2" value="1" type="button"
-                                    class="btn btn-success ansBtn">Answer2</button></li>
-                            <li class="mb-3"><button id="answer3" value="2" type="button"
-                                    class="btn btn-success ansBtn">Answer3</button></li>
-                            <li class="mb-3"><button id="answer4" value="3" type="button"
-                                    class="btn btn-success ansBtn">Answer4</button></li>
-                        </ul>
-            <button id="next-btn" type="button" class="next-btn btn">Next</button>
+                    <div id="answer-buttons" class="btn-grid">
+                        <button class="btn">Answer 1</button>
+                        <button class="btn">Answer 2</button>
+                        <button class="btn">Answer 3</button>
+                        <button class="btn">Answer 4</button>
+                      </div>
+                    <button id="next-btn" type="button" class="next-btn btn">Next</button>
+                </div>
+            </div>
+            <div class="controls  justify-content-md-center">
+                <button id="start-btn" type="button" class="start-btn btn">Start</button>
+            </div>
         </div>
-    </div>
-        <div class="controls  justify-content-md-center">
-            <button id="start-btn" type="button" class="start-btn btn">Start</button>
-            
-        </div>
-    </div>
-
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
