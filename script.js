@@ -1,185 +1,120 @@
-var mainDisplay = document.getElementById("article");
+var startButton = document.getElementById("start-btn")
+var mainText = document.getElementById("article");
+var questionContainer = document.getElementById("question-container")
+var questionElement = document.getElementById("question")
+var answerButtons = document.getElementById("answer-buttons")
 
-var questionContainer = document.getElementById("question-container");
-var currentQuestion = document.getElementById("question");
-var choiceElement = document.getElementById("options");
+var answerBtn = document.querySelectorAll("button.ansBtn")
+var answer1Btn = document.querySelector("#answer1");
+var answer2Btn = document.querySelector("#answer2");
+var answer3Btn = document.querySelector("#answer3");
+var answer4Btn = document.querySelector("#answer4");
 
+var nextButton = document.getElementById("next-btn")
 
-var startQuiz = document.getElementById("start-btn");
-var nextButton = document.getElementById("next-btn");
-
+let shuffledQuestions
 var currentQuestionIndex = 0;
-var availableQuestions = [];
-var currentQuestion = {}
-var maxQuestions = 5
 
-var userChoice = "";
-var userName;
-var saveUserscore = [];
-var userSubmit = document.getElementById("submitBtn")
-var userScore = document.getElementById("score");
-var scorePoints = 100;
-
-var quizQuestion = [
+var questions = [ // array of objects
     {
-        question: "What is javascript?",
-        choices: {
-            a: "A programming language",
-            b: "fun",
-            c: "cat",
-            d: "computer",
-        },
-        answer: "c",
+        question: "Coding is not stressful",
+        answers: ["1. Yes", "2. No", "3. Wrong Asnwer", "4. Try Again"],
+        correctAnswer: "1"
     },
     {
-        question: "What is javascript?",
-        choices: {
-            a: "A programming language",
-            b: "fun",
-            c: "cat",
-            d: "computer",
-        },
-        answer: "c",
+        question: "What are the main components of the web?",
+        answers: ["1. Javascript", "2. CSS", "3. HTML", "4. All of the above"],
+        correctAnswer: "4"
     },
     {
-        question: "What is javascript?",
-        choices: {
-            a: "A programming language",
-            b: "fun",
-            c: "cat",
-            d: "computer",
-        },
-        answer: "c",
+        question: "What is the name of the coding program we use?",
+        answers: ["1. Victoria Secret Code", "2. Valentino Sauce Code", "3. Visual Studio Code", "4. Notepad"],
+        correctAnswer: "3"
     },
     {
-        question: "What is javascript?",
-        choices: {
-            a: "A programming language",
-            b: "fun",
-            c: "cat",
-            d: "computer",
-        },
-        answer: "c",
+        question: "Where do we upload our code to?",
+        answers: ["1. Git Home", "2. Git", "3. quotes", "4. parentheses"],
+        correctAnswer: "2"
     },
     {
-        question: "What is javascript?",
-        choices: {
-            a: "A programming language",
-            b: "fun",
-            c: "cat",
-            d: "computer",
-        },
-        answer: "c",
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: ["1. Javascript", "2. terminal/bash", "3. for loops", "4. console.log"],
+        correctAnswer: "3"
     }
 ];
 
 
-startQuiz.setAttribute("class", "btn btn-primary")
-startQuiz.addEventListener("click", beginQuiz);
+// start quiz is button clicked
+startButton.addEventListener("click", startGame)
 
 
-function beginQuiz() {
-    article.style.display = "none";
-    startQuiz.style.display = "none";
-    questionContainer.style.display = "block";
-    showQuestion();
+answerBtn.forEach(item => {
+    item.addEventListener('click', selectAnswer);
+});
+
+function startGame() {
+    startButton.style.display = "none"
+    mainText.style.display = "none"
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    numberQuestion = 0;
+    questionContainer.style.display = "block"
+    setQuestion();
 }
 
-function showQuestion() {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...quizQuestion]
-
-    if(availableQuestions.length === 0 || currentQuestionIndex > maxQuestions) {
-        localStorage.setItem("mostRecentScore", score)
-        return window.location("")
-
+function setQuestion(id) {
+    if (id < questions.length) {
+        questionElement.innerText = question.question;
+        answerBtn.textContent = questions[id].answers[0];
+        answer2Btn.textContent = questions[id].answers[1];
+        answer3Btn.textContent = questions[id].answers[2];
+        answer4Btn.textContent = questions[id].answers[3];
     }
-    currentQuestionIndex++;
-    var currentOption = quizQuestion[currentQuestionIndex]
-    console.log(currentOption);
-    currentQuestion.textContent = currentOption.question
-    question.innerText = currentQuestion.question
+    setNextQuestion();
+}
 
-    choiceElement.textContent = currentOption.choices
-    choices.innerText = currentQuestion.choices
+function setNextQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 
+}
+
+
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answers => {
+        var button = document.createElement("button")
+        button.innerText = answers.text
+        button.classList.add("answerBtn")
+        if (answers.correct) {
+            button.dataset.correct = answers.correct
+        }
+        button.addEventListener("click", selectAnswer)
+        showQuestion.append(button)
+    })
+
+
+
+}
+
+function resetState() {
+    nextButton.classList.add("hide")
+    while (answerBtn.firstChild) {
+        answerButtons.removeChild(answerBtn.firstChild)
     }
-    // next button add one to current question index and same showquestion increment 
+}
 
+function selectAnswer(event) {
+    event.preventDefault();
 
-
-
-
-
-// function firstQuestion(question) {
-
-//     for (var i =0; i < question.choices.length; i++) {
-//     var options = document.createElement("div")
-
-//     answerElement.textContent = question.choices[i];
-
-//     options.addEventListener("click", function(){
-//     checkAnswer(question, function (event) {
-//     event.preventDefault();
-//     });
-//     // when click, pass text through there. Look at the event objects for clicks (activities 12); look through the console
-//     });
-
-//     document.getElementById("options").appendChild(options); 
-//     }   
-// }
-
-// function checkAnswer(question, userChoice) {
-//     if (userChoice === question.answer) {
-//         score++;
-//             alert("That's correct!");
-//     }
-//     else if (userchoice !== answer) {
-//         removeTime(timer);
-//     }
-// }
-
-
-
-
-
-// storage
-// var storedScores = JSON.parse(localStorage.getItem("userData"))
-// var highscores = [
-//     { initials: "AAA", score: 10},
-//     { initials: "AAA", score: 10},
-//     { initials: "AAA", score: 10},
-//     { initials: "AAA", score: 10},
-// ]
-
-// localStorage.setItem("highscores", JSON.stringify(highscores));
-
-// var localHighScores = JSON.parse(localStorage.getItem("highscores"));
-
-// localHighScores.sort(function(a,b) {
-//     return b.score - a.score;
-// })
-
-// for (let i = 0; i < localHighScores.length; i++) {
-//     const highscore = localHighScores[i];
-
-//     var li = document.createElement("li");
-//     var ul =document.createElement("ul");
-//     li.textContent = highscores.initials + "" + highscores.score;
-//     ul.append(li);
-
-//     document.body.append(ul)
-// }
-
-// function highscorePage(a, b) {
-
-//     var userData = {
-//         name: a,
-//         userScore: b
-//     }; 
-//     allScores.push(userData);
-
-//     localStorage.setItem("userData", JSON.stringify(allScores));
-
-// 
+    if (questions[currentQuestionIndex].correctAnswer === event.target.value) {
+        p.textContent = "Correct!";
+    } else if (questions[currentQuestionIndex].correctAnswer !== event.target.value) {
+        secondsLeft = secondsLeft - 10;
+        p.textContent = "Wrong!";
+    }
+    if (currentQuestionIndex < questions.length) {
+        currentQuestionIndex++;
+    }
+    // call setQuestion to bring in next question when any ansBtn is clicked
+    setQuestion(currentQuestionIndex);
+}
